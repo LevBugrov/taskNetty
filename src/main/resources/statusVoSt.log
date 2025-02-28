@@ -1,0 +1,424 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2025-02-28T11:05:12.812249100Z</date>
+  <millis>1740740712812</millis>
+  <nanos>249100</nanos>
+  <sequence>1</sequence>
+  <logger>org.example.VotingStructure</logger>
+  <level>INFO</level>
+  <class>org.example.VotingStructure</class>
+  <method>&lt;init&gt;</method>
+  <thread>1</thread>
+  <message>Start log from org.example.VotingStructure</message>
+</record>
+<record>
+  <date>2025-02-28T11:05:12.814262800Z</date>
+  <millis>1740740712814</millis>
+  <nanos>262800</nanos>
+  <sequence>2</sequence>
+  <logger>org.example.VotingStructure</logger>
+  <level>INFO</level>
+  <class>org.example.VotingStructure</class>
+  <method>createTopic</method>
+  <thread>1</thread>
+  <message>testTopic topic was created</message>
+</record>
+<record>
+  <date>2025-02-28T11:05:13.078548600Z</date>
+  <millis>1740740713078</millis>
+  <nanos>548600</nanos>
+  <sequence>3</sequence>
+  <logger>org.example.VotingStructure</logger>
+  <level>INFO</level>
+  <class>org.example.VotingStructure</class>
+  <method>&lt;init&gt;</method>
+  <thread>1</thread>
+  <message>Start log from org.example.VotingStructure</message>
+</record>
+<record>
+  <date>2025-02-28T11:05:13.079545900Z</date>
+  <millis>1740740713079</millis>
+  <nanos>545900</nanos>
+  <sequence>4</sequence>
+  <logger>org.example.VotingStructure</logger>
+  <level>INFO</level>
+  <class>org.example.VotingStructure</class>
+  <method>load</method>
+  <thread>1</thread>
+  <message>Load junitTest</message>
+</record>
+<record>
+  <date>2025-02-28T11:05:13.079545900Z</date>
+  <millis>1740740713079</millis>
+  <nanos>545900</nanos>
+  <sequence>5</sequence>
+  <logger>org.example.VotingStructure</logger>
+  <level>INFO</level>
+  <class>org.example.VotingStructure</class>
+  <method>executeCommand</method>
+  <thread>1</thread>
+  <message>Creating vote voname</message>
+</record>
+<record>
+  <date>2025-02-28T11:05:13.079545900Z</date>
+  <millis>1740740713079</millis>
+  <nanos>545900</nanos>
+  <sequence>6</sequence>
+  <logger>org.example.VotingStructure</logger>
+  <level>INFO</level>
+  <class>org.example.VotingStructure</class>
+  <method>executeCommand</method>
+  <thread>1</thread>
+  <message>Get vote</message>
+</record>
+<record>
+  <date>2025-02-28T11:05:13.082090700Z</date>
+  <millis>1740740713082</millis>
+  <nanos>90700</nanos>
+  <sequence>7</sequence>
+  <logger>org.example.VotingStructure</logger>
+  <level>INFO</level>
+  <class>org.example.VotingStructure</class>
+  <method>executeCommand</method>
+  <thread>1</thread>
+  <message>Creating topic testTopic</message>
+</record>
+<record>
+  <date>2025-02-28T11:05:13.082090700Z</date>
+  <millis>1740740713082</millis>
+  <nanos>90700</nanos>
+  <sequence>8</sequence>
+  <logger>org.example.VotingStructure</logger>
+  <level>INFO</level>
+  <class>org.example.VotingStructure</class>
+  <method>createTopic</method>
+  <thread>1</thread>
+  <message>testTopic topic was created</message>
+</record>
+<record>
+  <date>2025-02-28T11:05:13.082614400Z</date>
+  <millis>1740740713082</millis>
+  <nanos>614400</nanos>
+  <sequence>9</sequence>
+  <logger>org.example.VotingStructure</logger>
+  <level>INFO</level>
+  <class>org.example.VotingStructure</class>
+  <method>executeCommand</method>
+  <thread>1</thread>
+  <message>Creating vote ame</message>
+</record>
+<record>
+  <date>2025-02-28T11:05:13.090029300Z</date>
+  <millis>1740740713090</millis>
+  <nanos>29300</nanos>
+  <sequence>10</sequence>
+  <logger>org.example.VotingStructure</logger>
+  <level>INFO</level>
+  <class>org.example.VotingStructure</class>
+  <method>&lt;init&gt;</method>
+  <thread>1</thread>
+  <message>Start log from org.example.VotingStructure</message>
+</record>
+<record>
+  <date>2025-02-28T11:05:13.091026600Z</date>
+  <millis>1740740713091</millis>
+  <nanos>26600</nanos>
+  <sequence>11</sequence>
+  <logger>org.example.VotingStructure</logger>
+  <level>INFO</level>
+  <class>org.example.VotingStructure</class>
+  <method>load</method>
+  <thread>1</thread>
+  <message>Load junitTest</message>
+</record>
+<record>
+  <date>2025-02-28T11:05:13.091026600Z</date>
+  <millis>1740740713091</millis>
+  <nanos>26600</nanos>
+  <sequence>12</sequence>
+  <logger>org.example.VotingStructure</logger>
+  <level>INFO</level>
+  <class>org.example.VotingStructure</class>
+  <method>createTopic</method>
+  <thread>1</thread>
+  <message>junitTest topic was created</message>
+</record>
+<record>
+  <date>2025-02-28T11:05:13.096572200Z</date>
+  <millis>1740740713096</millis>
+  <nanos>572200</nanos>
+  <sequence>13</sequence>
+  <logger>org.example.VotingStructure</logger>
+  <level>INFO</level>
+  <class>org.example.VotingStructure</class>
+  <method>&lt;init&gt;</method>
+  <thread>1</thread>
+  <message>Start log from org.example.VotingStructure</message>
+</record>
+<record>
+  <date>2025-02-28T11:05:13.097572800Z</date>
+  <millis>1740740713097</millis>
+  <nanos>572800</nanos>
+  <sequence>14</sequence>
+  <logger>org.example.VotingStructure</logger>
+  <level>INFO</level>
+  <class>org.example.VotingStructure</class>
+  <method>load</method>
+  <thread>1</thread>
+  <message>Load junitTest</message>
+</record>
+<record>
+  <date>2025-02-28T11:05:13.103990600Z</date>
+  <millis>1740740713103</millis>
+  <nanos>990600</nanos>
+  <sequence>15</sequence>
+  <logger>org.example.VotingStructure</logger>
+  <level>INFO</level>
+  <class>org.example.VotingStructure</class>
+  <method>&lt;init&gt;</method>
+  <thread>1</thread>
+  <message>Start log from org.example.VotingStructure</message>
+</record>
+<record>
+  <date>2025-02-28T11:05:13.103990600Z</date>
+  <millis>1740740713103</millis>
+  <nanos>990600</nanos>
+  <sequence>16</sequence>
+  <logger>org.example.VotingStructure</logger>
+  <level>INFO</level>
+  <class>org.example.VotingStructure</class>
+  <method>load</method>
+  <thread>1</thread>
+  <message>Load junitTest</message>
+</record>
+<record>
+  <date>2025-02-28T11:05:13.124692100Z</date>
+  <millis>1740740713124</millis>
+  <nanos>692100</nanos>
+  <sequence>17</sequence>
+  <logger>org.example.VotingStructure</logger>
+  <level>INFO</level>
+  <class>org.example.VotingStructure</class>
+  <method>save</method>
+  <thread>1</thread>
+  <message>Saving VotingStructure</message>
+</record>
+<record>
+  <date>2025-02-28T11:05:13.126692600Z</date>
+  <millis>1740740713126</millis>
+  <nanos>692600</nanos>
+  <sequence>18</sequence>
+  <logger>org.example.VotingStructure</logger>
+  <level>INFO</level>
+  <class>org.example.VotingStructure</class>
+  <method>executeCommand</method>
+  <thread>1</thread>
+  <message>Creating topic testTopic</message>
+</record>
+<record>
+  <date>2025-02-28T11:05:13.127693400Z</date>
+  <millis>1740740713127</millis>
+  <nanos>693400</nanos>
+  <sequence>19</sequence>
+  <logger>org.example.VotingStructure</logger>
+  <level>INFO</level>
+  <class>org.example.VotingStructure</class>
+  <method>createTopic</method>
+  <thread>1</thread>
+  <message>testTopic topic was created</message>
+</record>
+<record>
+  <date>2025-02-28T11:05:13.127693400Z</date>
+  <millis>1740740713127</millis>
+  <nanos>693400</nanos>
+  <sequence>20</sequence>
+  <logger>org.example.VotingStructure</logger>
+  <level>INFO</level>
+  <class>org.example.VotingStructure</class>
+  <method>executeCommand</method>
+  <thread>1</thread>
+  <message>Creating vote ame</message>
+</record>
+<record>
+  <date>2025-02-28T11:05:13.127693400Z</date>
+  <millis>1740740713127</millis>
+  <nanos>693400</nanos>
+  <sequence>21</sequence>
+  <logger>org.example.VotingStructure</logger>
+  <level>INFO</level>
+  <class>org.example.VotingStructure</class>
+  <method>executeCommand</method>
+  <thread>1</thread>
+  <message>Get topics</message>
+</record>
+<record>
+  <date>2025-02-28T11:05:13.130209100Z</date>
+  <millis>1740740713130</millis>
+  <nanos>209100</nanos>
+  <sequence>22</sequence>
+  <logger>org.example.VotingStructure</logger>
+  <level>INFO</level>
+  <class>org.example.VotingStructure</class>
+  <method>executeCommand</method>
+  <thread>1</thread>
+  <message>Creating topic testTopic</message>
+</record>
+<record>
+  <date>2025-02-28T11:05:13.130707400Z</date>
+  <millis>1740740713130</millis>
+  <nanos>707400</nanos>
+  <sequence>23</sequence>
+  <logger>org.example.VotingStructure</logger>
+  <level>INFO</level>
+  <class>org.example.VotingStructure</class>
+  <method>createTopic</method>
+  <thread>1</thread>
+  <message>testTopic topic was created</message>
+</record>
+<record>
+  <date>2025-02-28T11:05:13.130707400Z</date>
+  <millis>1740740713130</millis>
+  <nanos>707400</nanos>
+  <sequence>24</sequence>
+  <logger>org.example.VotingStructure</logger>
+  <level>INFO</level>
+  <class>org.example.VotingStructure</class>
+  <method>executeCommand</method>
+  <thread>1</thread>
+  <message>Creating vote ame</message>
+</record>
+<record>
+  <date>2025-02-28T11:05:13.130707400Z</date>
+  <millis>1740740713130</millis>
+  <nanos>707400</nanos>
+  <sequence>25</sequence>
+  <logger>org.example.VotingStructure</logger>
+  <level>INFO</level>
+  <class>org.example.VotingStructure</class>
+  <method>executeCommand</method>
+  <thread>1</thread>
+  <message>Get vote</message>
+</record>
+<record>
+  <date>2025-02-28T11:05:13.138914500Z</date>
+  <millis>1740740713138</millis>
+  <nanos>914500</nanos>
+  <sequence>26</sequence>
+  <logger>org.example.VotingStructure</logger>
+  <level>INFO</level>
+  <class>org.example.VotingStructure</class>
+  <method>&lt;init&gt;</method>
+  <thread>1</thread>
+  <message>Start log from org.example.VotingStructure</message>
+</record>
+<record>
+  <date>2025-02-28T11:05:13.138914500Z</date>
+  <millis>1740740713138</millis>
+  <nanos>914500</nanos>
+  <sequence>27</sequence>
+  <logger>org.example.VotingStructure</logger>
+  <level>INFO</level>
+  <class>org.example.VotingStructure</class>
+  <method>load</method>
+  <thread>1</thread>
+  <message>Load junitTest</message>
+</record>
+<record>
+  <date>2025-02-28T11:05:13.139936800Z</date>
+  <millis>1740740713139</millis>
+  <nanos>936800</nanos>
+  <sequence>28</sequence>
+  <logger>org.example.VotingStructure</logger>
+  <level>INFO</level>
+  <class>org.example.VotingStructure</class>
+  <method>executeCommand</method>
+  <thread>1</thread>
+  <message>Get vote info</message>
+</record>
+<record>
+  <date>2025-02-28T11:05:13.147484600Z</date>
+  <millis>1740740713147</millis>
+  <nanos>484600</nanos>
+  <sequence>29</sequence>
+  <logger>org.example.VotingStructure</logger>
+  <level>INFO</level>
+  <class>org.example.VotingStructure</class>
+  <method>&lt;init&gt;</method>
+  <thread>1</thread>
+  <message>Start log from org.example.VotingStructure</message>
+</record>
+<record>
+  <date>2025-02-28T11:05:13.149481600Z</date>
+  <millis>1740740713149</millis>
+  <nanos>481600</nanos>
+  <sequence>30</sequence>
+  <logger>org.example.VotingStructure</logger>
+  <level>INFO</level>
+  <class>org.example.VotingStructure</class>
+  <method>load</method>
+  <thread>1</thread>
+  <message>Load junitTest</message>
+</record>
+<record>
+  <date>2025-02-28T11:05:13.149481600Z</date>
+  <millis>1740740713149</millis>
+  <nanos>481600</nanos>
+  <sequence>31</sequence>
+  <logger>org.example.VotingStructure</logger>
+  <level>INFO</level>
+  <class>org.example.VotingStructure</class>
+  <method>executeCommand</method>
+  <thread>1</thread>
+  <message>Get vote options</message>
+</record>
+<record>
+  <date>2025-02-28T11:05:13.156672700Z</date>
+  <millis>1740740713156</millis>
+  <nanos>672700</nanos>
+  <sequence>32</sequence>
+  <logger>org.example.VotingStructure</logger>
+  <level>INFO</level>
+  <class>org.example.VotingStructure</class>
+  <method>&lt;init&gt;</method>
+  <thread>1</thread>
+  <message>Start log from org.example.VotingStructure</message>
+</record>
+<record>
+  <date>2025-02-28T11:05:13.157673Z</date>
+  <millis>1740740713157</millis>
+  <nanos>673000</nanos>
+  <sequence>33</sequence>
+  <logger>org.example.VotingStructure</logger>
+  <level>INFO</level>
+  <class>org.example.VotingStructure</class>
+  <method>load</method>
+  <thread>1</thread>
+  <message>Load junitTest</message>
+</record>
+<record>
+  <date>2025-02-28T11:05:13.158672700Z</date>
+  <millis>1740740713158</millis>
+  <nanos>672700</nanos>
+  <sequence>34</sequence>
+  <logger>org.example.VotingStructure</logger>
+  <level>INFO</level>
+  <class>org.example.VotingStructure</class>
+  <method>executeCommand</method>
+  <thread>1</thread>
+  <message>bleb voting</message>
+</record>
+<record>
+  <date>2025-02-28T11:05:13.158672700Z</date>
+  <millis>1740740713158</millis>
+  <nanos>672700</nanos>
+  <sequence>35</sequence>
+  <logger>org.example.VotingStructure</logger>
+  <level>INFO</level>
+  <class>org.example.VotingStructure</class>
+  <method>executeCommand</method>
+  <thread>1</thread>
+  <message>Get vote info</message>
+</record>
+</log>

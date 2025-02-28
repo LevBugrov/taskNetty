@@ -1,0 +1,7 @@
+{"topics":
+{"testTopic":
+{"name":"testTopic","votings":
+{"voname":
+{"name":"voname","creator":"bleb","description":"deskription",
+  "options":
+  {"option2":{"name":"option2","voters":[]},"option1":{"name":"option1","voters":["beb"]}}}}}}}
