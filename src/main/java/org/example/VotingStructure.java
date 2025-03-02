@@ -41,66 +41,80 @@ public class VotingStructure{
         }
     }
 
+    public String viewTopics(){
+        StringBuilder out = new StringBuilder();
+        int count=0;
+        for(Topic topic: topics.values())
+            out.append("<"+ topic.getName() + " (votes in topic=<" + topic.countVoters()+">)>\n");
+
+        return out.toString();
+    }
+
     public static String executeCommand(String command){
         String[] splitCM = command.split(" ");
-        switch (splitCM[0]){
-            case "help":
-                log.info("help");
-                return """
-                        create topic -n=<topic>     создает новый раздел c именем -n
-                        create vote -t=<topic>      запускает создание нового голосования в разделе -t
-                        delete -t=topic -v=<vote>   удалить голосование с именем <vote> из <topic>
-                        view                        показывает список разделов
-                        view -t=<topic>             показывает список голосований в разделе
-                        view -t=<topic> -v=<vote>   отображает информацию по голосованию
-                        vote -t=<topic> -v=<vote>   запускает выбор ответа в голосовании
-                        exit                        завершение работы программы""";
-            case "create":
-                log.info("Creating topic " + splitCM[2].substring(3));
-                VotingStructure.getInstance().createTopic(splitCM[2].substring(3));
-                return splitCM[2].substring(3)+" was created successfully";
-            case "createVote":
-                log.info("Creating vote " + splitCM[2].substring(3));
-                getInstance().topics.get(splitCM[1]).
-                        createVote(splitCM[splitCM.length-1], splitCM[2], splitCM[3],
-                                Arrays.copyOfRange(splitCM, 4, splitCM.length-1));
-                return "vote was created successfully";
-            case "view":
-                if(splitCM.length==2){
-                    log.info("Get topics");
-                    return getInstance().textTopics();
-                }
-                if(splitCM.length==3) {
-                    log.info("Get vote");
-                    return getInstance().topics.get(splitCM[1].substring(3)).votingText();
-                }
-                if(splitCM.length==4) {
-                    log.info("Get vote info");
-                    return getInstance().topics.get(splitCM[1].substring(3)).
-                            getVoting(splitCM[2].substring(3)).voteInfo();
-                }
-                return "invalid view";
-            case "vote":
-                if(splitCM.length == 4){
-                    log.info("Get vote options");
-                    return getInstance().topics.get(splitCM[1].substring(3)).
-                            getVoting(splitCM[2].substring(3)).optionsInfo();
-                }
-                if(splitCM.length == 5){
-                    log.info(splitCM[4]+" voting");
-                    getInstance().topics.get(splitCM[1])
-                            .getVoting(splitCM[2])
-                            .vote(splitCM[3], splitCM[4]);
-                    return "sucsesful vote";
-                }
-            case "delete":
-                log.info("Creating vote " + splitCM[2].substring(3));
-                return getInstance().topics.get(splitCM[1].substring(3))
-                        .deleteVote(splitCM[splitCM.length-1], splitCM[2].substring(3));
+        try{
+            switch (splitCM[0]) {
+                case "help":
+                    log.info("help");
+                    return """
+                            create topic -n=<topic>     создает новый раздел c именем -n
+                            create vote -t=<topic>      запускает создание нового голосования в разделе -t
+                            delete -t=topic -v=<vote>   удалить голосование с именем <vote> из <topic>
+                            view                        показывает список разделов
+                            view -t=<topic>             показывает список голосований в разделе
+                            view -t=<topic> -v=<vote>   отображает информацию по голосованию
+                            vote -t=<topic> -v=<vote>   запускает выбор ответа в голосовании
+                            exit                        завершение работы программы""";
+                case "create":
+                    log.info("Creating topic " + splitCM[2].substring(3));
+                    VotingStructure.getInstance().createTopic(splitCM[2].substring(3));
+                    return splitCM[2].substring(3) + " was created successfully";
+                case "createVote":
+                    log.info("Creating vote " + splitCM[2].substring(3));
+                    getInstance().topics.get(splitCM[1]).
+                            createVote(splitCM[splitCM.length - 1], splitCM[2], splitCM[3],
+                                    Arrays.copyOfRange(splitCM, 4, splitCM.length - 1));
+                    return "vote was created successfully";
+                case "view":
+                    if (splitCM.length == 2) {
+                        log.info("Get topics");
+                        return getInstance().viewTopics();
+                    }
+                    if (splitCM.length == 3) {
+                        log.info("Get vote");
+                        return getInstance().topics.get(splitCM[1].substring(3)).votingText();
+                    }
+                    if (splitCM.length == 4) {
+                        log.info("Get vote info");
+                        return getInstance().topics.get(splitCM[1].substring(3)).
+                                getVoting(splitCM[2].substring(3)).voteInfo();
+                    }
+                    return "invalid view";
+                case "vote":
+                    if (splitCM.length == 4) {
+                        log.info("Get vote options");
+                        return getInstance().topics.get(splitCM[1].substring(3)).
+                                getVoting(splitCM[2].substring(3)).optionsInfo();
+                    }
+                    if (splitCM.length == 5) {
+                        log.info("{} voting", splitCM[4]);
+                        getInstance().topics.get(splitCM[1])
+                                .getVoting(splitCM[2])
+                                .vote(splitCM[3], splitCM[4]);
+                        return "sucsesful vote";
+                    }
+                case "delete":
+                    log.info("Creating vote {}", splitCM[2].substring(3));
+                    return getInstance().topics.get(splitCM[1].substring(3))
+                            .deleteVote(splitCM[splitCM.length - 1], splitCM[2].substring(3));
 
 
+            }
+            return "invalid command";
+        }catch (Exception e) {
+            log.warn("Smth went wrong{}", e);
         }
-        return "invalid command";
+        return "smth went wrong";
     }
 
     public void save(String fileName) throws JsonProcessingException {
@@ -111,7 +125,7 @@ public class VotingStructure{
             log.info("Saving VotingStructure");
             out.println(text);
         } catch (FileNotFoundException e) {
-            log.warn("Save failed "+ e);
+            log.warn("Save failed {}", e);
             throw new RuntimeException(e);
         }
     }
@@ -127,9 +141,9 @@ public class VotingStructure{
                 line = br.readLine();
             }
             instance = new ObjectMapper().readValue(sb.toString(), VotingStructure.class);
-            log.info("Load "+fileName);
+            log.info("Load {}", fileName);
         } catch (IOException e) {
-            log.warn("Load failed "+ e);
+            log.warn("Load failed {}", e);
             throw new RuntimeException(e);
         }
 
@@ -159,6 +173,7 @@ class Topic{
         votings.put(vote, new Voting(creator, vote, description, vo));
         //return vote + " was created";
     }
+
     public String deleteVote(String creator, String vote){
         if(votings.get(vote).getCreator().equals(creator)){
             votings.remove(vote);
@@ -167,6 +182,12 @@ class Topic{
         return vote+" wasn't removed";
     }
 
+    public int countVoters(){
+        int sum = 0;
+        for (Voting option : votings.values())
+            sum += option.countVoters();
+        return sum;
+    }
 }
 
 class Voting{
@@ -194,8 +215,14 @@ class Voting{
     public Hashtable<String, VotingOption> getOptions() {return options;}
     public void setOptions(Hashtable<String, VotingOption> options) {this.options = options;}
 
-
     public String optionsInfo(){return String.join(" ",options.keySet().toString());}
+
+    public int countVoters(){
+        int sum = 0;
+        for (VotingOption option : options.values())
+            sum += option.countVoters();
+        return sum;
+    }
     public String voteInfo(){
         StringBuilder out = new StringBuilder("Name=" + name + "\nOptions [");
         for (String option: options.keySet())

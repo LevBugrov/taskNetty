@@ -74,16 +74,24 @@ public class ServerNetty {
         do{
             input = sc.nextLine();
             if(input.startsWith("load ")){
-                VotingStructure.getInstance().load(input.substring(5));
-                log.info("start load from {}", input.substring(5));
+                try{
+                    log.info("start load from {}", input.substring(5));
+                    VotingStructure.getInstance().load(input.substring(5));
+                    System.out.println("load is done!");
+                }catch (Exception err){
+                    System.out.println("smth went wrong");
+                    log.error(err.toString());
+                }
 
             }else if(input.startsWith("save ")){
                 try {
+                    log.info("start saving as {}", input.substring(5));
                     VotingStructure.getInstance().save(input.substring(5));
-                } catch (JsonProcessingException e) {
-                   log.error(e.toString());
+                    System.out.println("Save is done!");
+                } catch (JsonProcessingException err) {
+                    System.out.println("smth went wrong");
+                    log.error(err.toString());
                 }
-                log.info("start saving as {}", input.substring(5));
             }
         } while(!input.equals("exit"));
         shutdown();

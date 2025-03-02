@@ -63,7 +63,7 @@ public class VotingStructureTest {
         VotingStructure.executeCommand("create topic -n=testTopic");
         VotingStructure.executeCommand("createVote testTopic voName description opt1 opt2 testCreator");
         Assertions.assertEquals(
-                "[testTopic]",
+                "<testTopic (votes in topic=<0>)>\n",
                 VotingStructure.executeCommand("view bleb"));
     }
 
