@@ -1,20 +1,23 @@
 package org.example;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import io.netty.bootstrap.ServerBootstrap;
-import io.netty.channel.ChannelFuture;
-import io.netty.channel.ChannelInitializer;
-import io.netty.channel.ChannelOption;
-import io.netty.channel.EventLoopGroup;
+import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.util.Scanner;
-import java.util.logging.FileHandler;
-import java.util.logging.Logger;
 
 public class ServerNetty {
     private static int port;
     private static int numberOfClients;
+    private static final Logger log = LoggerFactory.getLogger(ServerNetty.class);
+
+    private static ChannelFuture f;
+    private static NioEventLoopGroup bossGroup;
+    private static NioEventLoopGroup workerGroup;
 
     public ServerNetty(int port, int numberOfClients){
         ServerNetty.port = port;
@@ -22,8 +25,8 @@ public class ServerNetty {
     }
 
     public void run() throws InterruptedException {
-        EventLoopGroup bossGroup = new NioEventLoopGroup();
-        EventLoopGroup workerGroup = new NioEventLoopGroup(numberOfClients);
+        bossGroup = new NioEventLoopGroup();
+        workerGroup = new NioEventLoopGroup(numberOfClients);
         try {
             ServerBootstrap b = new ServerBootstrap();
             b.group(bossGroup, workerGroup)
@@ -37,7 +40,7 @@ public class ServerNetty {
                     .option(ChannelOption.SO_BACKLOG, 128)
                     .childOption(ChannelOption.SO_KEEPALIVE, true);
 
-            ChannelFuture f = b.bind(port).sync();
+            f = b.bind(port).sync();
 
             f.channel().closeFuture().sync();
         } finally {
@@ -46,7 +49,20 @@ public class ServerNetty {
         }
     }
 
-    public static void executeCommand(Logger logger){
+    private static void shutdown() {
+        System.out.println("Stopping server");
+        try {
+            bossGroup.shutdownGracefully().sync();
+            workerGroup.shutdownGracefully().sync();
+            f.channel().closeFuture().sync();
+        }
+        catch (InterruptedException e) {
+            log.error(e.toString());
+        }
+    }
+
+
+    public static void executeCommand(){
         System.out.println("""
                 Available commands:
                 load <filename> - loading data from a file
@@ -59,29 +75,29 @@ public class ServerNetty {
             input = sc.nextLine();
             if(input.startsWith("load ")){
                 VotingStructure.getInstance().load(input.substring(5));
-                logger.info("start saving as "+input.substring(5));
+                log.info("start load from {}", input.substring(5));
+
             }else if(input.startsWith("save ")){
-                VotingStructure.getInstance().load(input.substring(5));
-                logger.info("start saving as "+input.substring(5));
+                try {
+                    VotingStructure.getInstance().save(input.substring(5));
+                } catch (JsonProcessingException e) {
+                   log.error(e.toString());
+                }
+                log.info("start saving as {}", input.substring(5));
             }
         } while(!input.equals("exit"));
+        shutdown();
+        log.info("Server stopped");
     }
 
     public static void main(String[] args) throws Exception {
         int port = 8080;
         int numberOfClients = 10;
-//        new ServerNetty(port, numberOfClients).run();
 
-        Logger logger = Logger.getLogger(ServerNetty.class.getName());
-        logger.setUseParentHandlers(false);
-        FileHandler fileHandler = new FileHandler("src/main/resources/status.log");
-        logger.addHandler(fileHandler);
-
-        logger.info("Start log from "+ServerNetty.class.getName());
-        executeCommand(logger);
-        logger.info("Server exit");
-
-
+        log.info("Start log from {}", ServerNetty.class.getName());
+        Thread execute = new Thread(ServerNetty::executeCommand);
+        execute.start();
+        new ServerNetty(port, numberOfClients).run();
     }
 }
 

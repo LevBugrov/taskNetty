@@ -10,12 +10,6 @@ import java.nio.charset.StandardCharsets;
 
 public class ClientHandler extends ChannelInboundHandlerAdapter {
     @Override
-    public void channelActive(ChannelHandlerContext ctx) {
-        ByteBuf message = Unpooled.copiedBuffer("login -u=beb", StandardCharsets.UTF_8);
-        ctx.writeAndFlush(message);
-    }
-
-    @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) {
         try {
             ByteBuf in = (ByteBuf) msg;

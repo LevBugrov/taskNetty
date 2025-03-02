@@ -5,31 +5,23 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Hashtable;
 import java.util.Map;
-import java.util.logging.FileHandler;
-import java.util.logging.Logger;
 
 public class VotingStructure{
     private static VotingStructure instance;
     private final Hashtable<String, Topic> topics;
     @JsonIgnore
-    protected static Logger logger = Logger.getLogger(VotingStructure.class.getName());
+    private static final Logger log = LoggerFactory.getLogger(VotingStructure.class);
 
     private VotingStructure(){
         topics = new Hashtable<>();
-        logger.setUseParentHandlers(false);
-        FileHandler fileHandler = null;
-        try {
-            fileHandler = new FileHandler("src/main/resources/statusVoSt.log");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        logger.addHandler(fileHandler);
-        logger.info("Start log from "+VotingStructure.class.getName());
+        log.info("Start log from {}", VotingStructure.class.getName());
 
     }
     public Hashtable<String, Topic> getTopics() {return topics;}
@@ -45,7 +37,7 @@ public class VotingStructure{
     public void createTopic(String topic){
         if(!topics.contains(topic)) {
             topics.put(topic, new Topic(topic));
-            logger.info(topic+" topic was created");
+            log.info("{} topic was created", topic);
         }
     }
 
@@ -53,7 +45,7 @@ public class VotingStructure{
         String[] splitCM = command.split(" ");
         switch (splitCM[0]){
             case "help":
-                logger.info("help");
+                log.info("help");
                 return """
                         create topic -n=<topic>     создает новый раздел c именем -n
                         create vote -t=<topic>      запускает создание нового голосования в разделе -t
@@ -64,45 +56,45 @@ public class VotingStructure{
                         vote -t=<topic> -v=<vote>   запускает выбор ответа в голосовании
                         exit                        завершение работы программы""";
             case "create":
-                logger.info("Creating topic " + splitCM[2].substring(3));
+                log.info("Creating topic " + splitCM[2].substring(3));
                 VotingStructure.getInstance().createTopic(splitCM[2].substring(3));
                 return splitCM[2].substring(3)+" was created successfully";
             case "createVote":
-                logger.info("Creating vote " + splitCM[2].substring(3));
+                log.info("Creating vote " + splitCM[2].substring(3));
                 getInstance().topics.get(splitCM[1]).
                         createVote(splitCM[splitCM.length-1], splitCM[2], splitCM[3],
-                                Arrays.copyOfRange(splitCM, 2, splitCM.length-1));
+                                Arrays.copyOfRange(splitCM, 4, splitCM.length-1));
                 return "vote was created successfully";
             case "view":
                 if(splitCM.length==2){
-                    logger.info("Get topics");
+                    log.info("Get topics");
                     return getInstance().textTopics();
                 }
                 if(splitCM.length==3) {
-                    logger.info("Get vote");
+                    log.info("Get vote");
                     return getInstance().topics.get(splitCM[1].substring(3)).votingText();
                 }
                 if(splitCM.length==4) {
-                    logger.info("Get vote info");
+                    log.info("Get vote info");
                     return getInstance().topics.get(splitCM[1].substring(3)).
                             getVoting(splitCM[2].substring(3)).voteInfo();
                 }
                 return "invalid view";
             case "vote":
                 if(splitCM.length == 4){
-                    logger.info("Get vote options");
+                    log.info("Get vote options");
                     return getInstance().topics.get(splitCM[1].substring(3)).
                             getVoting(splitCM[2].substring(3)).optionsInfo();
                 }
                 if(splitCM.length == 5){
-                    logger.info(splitCM[4]+" voting");
+                    log.info(splitCM[4]+" voting");
                     getInstance().topics.get(splitCM[1])
                             .getVoting(splitCM[2])
                             .vote(splitCM[3], splitCM[4]);
                     return "sucsesful vote";
                 }
             case "delete":
-                logger.info("Creating vote " + splitCM[2].substring(3));
+                log.info("Creating vote " + splitCM[2].substring(3));
                 return getInstance().topics.get(splitCM[1].substring(3))
                         .deleteVote(splitCM[splitCM.length-1], splitCM[2].substring(3));
 
@@ -116,10 +108,10 @@ public class VotingStructure{
         mapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
         String text = mapper.writeValueAsString(getInstance());
         try (PrintWriter out = new PrintWriter("src/main/resources/" + fileName + ".json")) {
-            logger.info("Saving VotingStructure");
+            log.info("Saving VotingStructure");
             out.println(text);
         } catch (FileNotFoundException e) {
-            logger.severe("Save failed "+e.toString());
+            log.warn("Save failed "+ e);
             throw new RuntimeException(e);
         }
     }
@@ -135,9 +127,9 @@ public class VotingStructure{
                 line = br.readLine();
             }
             instance = new ObjectMapper().readValue(sb.toString(), VotingStructure.class);
-            logger.info("Load "+fileName);
+            log.info("Load "+fileName);
         } catch (IOException e) {
-            logger.severe("Load failed "+e.toString());
+            log.warn("Load failed "+ e);
             throw new RuntimeException(e);
         }
 
@@ -205,13 +197,10 @@ class Voting{
 
     public String optionsInfo(){return String.join(" ",options.keySet().toString());}
     public String voteInfo(){
-        StringBuilder out = new StringBuilder();
-        out.append("Name=").append(name).append("\nOptions[ ");
-        for(String key:options.keySet()) {
-            VotingOption option = options.get(key);
-            out.append(option.getName()).append(": ").append(option.countVoters()).append(" ");
-        }
-        out.append("]");
+        StringBuilder out = new StringBuilder("Name=" + name + "\nOptions [");
+        for (String option: options.keySet())
+            out.append(options.get(option).getName()).append(":").append(options.get(option).countVoters()).append(", ");
+        out.replace(out.length()-2,out.length()-1, "]");
         return out.toString();
     }
 

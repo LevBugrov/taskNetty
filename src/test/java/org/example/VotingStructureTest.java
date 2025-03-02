@@ -12,9 +12,8 @@ import java.io.IOException;
 
 public class VotingStructureTest {
     @AfterAll
-    static void creanFile(){
+    static void cleanFile(){
         new File("src/main/resources/junitTestSave.json").delete();
-//
     }
     @Test
     void createTopic(){
@@ -80,7 +79,7 @@ public class VotingStructureTest {
     @Test
     void executeCommandView3(){
         VotingStructure.getInstance().load("junitTest");
-        Assertions.assertEquals("Name=voname\nOptions[ option2: 0 option1: 1 ]",
+        Assertions.assertEquals("Name=voname\nOptions [option2:0, option1:1] ",
                 VotingStructure.executeCommand("view -t=testTopic -v=voname bleb"));
     }
 
@@ -95,7 +94,7 @@ public class VotingStructureTest {
     void executeCommandVote(){
         VotingStructure.getInstance().load("junitTest");
         VotingStructure.executeCommand("vote testTopic voname option2 bleb");
-        Assertions.assertEquals("Name=voname\nOptions[ option2: 1 option1: 1 ]",
+        Assertions.assertEquals("Name=voname\nOptions [option2:1, option1:1] ",
                 VotingStructure.executeCommand("view -t=testTopic -v=voname bleb"));
     }
 
